@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danny's Visuals & Code | Portfolio</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
+                    },
+                },
+            },
+        }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-zinc-950 text-zinc-50 antialiased selection:bg-zinc-800 selection:text-blue-400">
+
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <header class="flex items-center justify-between py-8 border-b border-zinc-900">
+            <a href="#" class="text-xl font-bold tracking-tight hover:text-zinc-400 transition-colors">
+                DANNY<span class="text-blue-500">.</span>
+            </a>
+            <nav class="flex items-center space-x-6 text-sm font-medium text-zinc-400">
+                <a href="#photography" class="hover:text-zinc-100 transition-colors">Photography</a>
+                <a href="#videography" class="hover:text-zinc-100 transition-colors">Videography</a>
+                <a href="#about" class="hover:text-zinc-100 transition-colors">About</a>
+                <a href="https://github.com/DannyB468/portfolio" target="_blank" class="font-mono text-xs bg-zinc-900 px-3 py-1.5 rounded border border-zinc-800 hover:border-zinc-700 hover:text-blue-400 transition-all">
+                    github
+                </a>
+            </nav>
+        </header>
+
+        <main>
+            <section class="py-20 md:py-32 max-w-3xl">
+                <div class="inline-flex items-center space-x-2 bg-zinc-900 border border-zinc-800 px-3 py-1 rounded-full text-xs text-zinc-400 font-mono mb-6">
+                    <span class="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span>Visual Art Storyteller</span>
+                </div>
+                <h1 class="text-4xl sm:text-6xl font-bold tracking-tight mb-6 leading-tight">
+                    Telling stories through the lens, one frame at a time.
+                </h1>
+                <p class="text-lg text-zinc-400 leading-relaxed mb-8">
+                    I bridge the gap between creative visual production and technical optimization. Crafting sharp, high-impact imagery backed by lightweight, intentional code.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#photography" class="bg-zinc-100 text-zinc-900 px-6 py-3 rounded font-medium hover:bg-zinc-200 transition-colors text-sm">
+                        View Portfolio
+                    </a>
+                    <a href="#about" class="border border-zinc-800 bg-zinc-950 px-6 py-3 rounded font-medium hover:bg-zinc-900 hover:border-zinc-700 transition-colors text-sm">
+                        Contact Me
+                    </a>
+                </div>
+            </section>
+
+            <hr class="border-zinc-900">
+
+            <!-- Photography Grid Section -->
+            <!-- Photography Grid Section -->
+            <section id="photography" class="py-20">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                    <div>
+                        <h2 class="text-2xl font-bold tracking-tight mb-2">Selected Imagery</h2>
+                        <p class="text-zinc-400 text-sm">A collection of photos taken over the span of 3 years.</p>
+                    </div>
+                </div>
+
+                <!-- Responsive 12-Slot Grid Structure -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                    
+                    <!-- Slot 01 -->
+                    <div class="group relative overflow-hidden rounded-lg bg-zinc-900 aspect-[3/4]">
+                        <img src="assets/photos/maroon1.JPG" 
+                             alt="Editorial portrait photography" 
+                             loading="lazy"
+                             class="object-cover w-full h-full grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500 ease-out">
+                        <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6 flex items-end">
+                            <div>
+                                <p class="text-xs font-mono text-blue-400 mb-1">01 // Sunday Afternoon #1</p>
+                                <h3 class="font-bold text-sm">Chayamba Building</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slot 02 -->
+                    <div class="group relative overflow-hidden rounded-lg bg-zinc-900 aspect-[3/4]">
+                        <img src="assets/photos/maroon2.JPG" 
+                             alt="Commercial camera gear showcase" 
+                             loading="lazy"
+                             class="object-cover w-full h-full grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500 ease-out">
+                        <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6 flex items-end">
+                            <div>
+                                <p class="text-xs font-mono text-blue-400 mb-1">02 // Sunday Afternoon #2</p>
+                                <h3 class="font-bold text-sm">Chayamba Building</h3>
+                           </div>
+                        </div>
+                    </div>
+
+                    <!-- Slot 03 -->
+                    <div class="group relative overflow-hidden rounded-lg bg-zinc-900 aspect-[3/4]">
+                        <img src="assets/photos/nike1.JPG" 
+                             alt="Street low light photography" 
+                             loading="lazy"
+                             class="object-cover w-full h-full grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500 ease-out">
+                        <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6 flex items-end">
+                            <div>
+                                <p class="text-xs font-mono text-blue-400 mb-1">03 // Swoosh #1</p>
+                                <h3 class="font-bold text-sm">Word Alive Ministries International</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slot 04 -->
+                    <div class="group relative overflow-hidden rounded-lg bg-zinc-900 aspect-[3/4]">
+                        <img src="assets/photos/pip1.JPG" 
+                             alt="Architectural lines" 
+                             loading="lazy"
+                             class="object-cover w-full h-full grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500 ease-out">
+                        <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6 flex items-end">
+                            <div>
+                                <p class="text-xs font-mono text-blue-400 mb-1">04 // Purpose In Pain Shoot #1</p>
+                                <h3 class="font-bold text-sm">Word Alive Ministries International</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slot 05 -->
+                    <div class="group relative overflow-hidden rounded-lg bg-zinc-900 aspect-[3/4]">
+                        <img src="assets/photos/pip2.JPG" 
+                             alt="Landscape perspective" 
+                             loading="lazy"
+                             class="object-cover w-full h-full grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500 ease-out">
+                        <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6 flex items-end">
+                            <div>
+                                <p class="text-xs font-mono text-blue-400 mb-1">05 // Purpose In Pain Shoot #2</p>
+                                <h3 class="font-bold text-sm">Word Alive Ministries International</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slot 06 -->
+                    <div class="group relative overflow-hidden rounded-lg bg-zinc-900 aspect-[3/4]">
+                        <img src="assets/photos/nike2.JPG" 
+                             alt="Abstract composition" 
+                             loading="lazy"
+                             class="object-cover w-full h-full grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500 ease-out">
+                        <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6 flex items-end">
+                            <div>
+                                <p class="text-xs font-mono text-blue-400 mb-1">06 // Swoosh #2</p>
+                                <h3 class="font-bold text-sm">Word Alive Ministries International</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slot 07 -->
+                    <div class="group relative overflow-hidden rounded-lg bg-zinc-900 aspect-[3/4]">
+                        <img src="assets/photos/joy1.JPG" 
+                             alt="Live event narrative" 
+                             loading="lazy"
+                             class="object-cover w-full h-full grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500 ease-out">
+                        <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6 flex items-end">
+                            <div>
+                                <p class="text-xs font-mono text-blue-400 mb-1">07 // JOY</p>
+                                <h3 class="font-bold text-sm">KUHES-Mahatma Gandhi</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slot 08 -->
+                    <div class="group relative overflow-hidden rounded-lg bg-zinc-900 aspect-[3/4]">
+                        <img src="assets/photos/joy4.JPG" 
+                             alt="Fine art nature" 
+                             loading="lazy"
+                             class="object-cover w-full h-full grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500 ease-out">
+                        <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6 flex items-end">
+                            <div>
+                                <p class="text-xs font-mono text-blue-400 mb-1">08 // JOY</p>
+                                <h3 class="font-bold text-sm">KUHES-Mahatma Gandhi</h3>
+                            </div>
+                       </div>
+                    </div>
+
+                    <!-- Slot 09 -->
+                    <div class="group relative overflow-hidden rounded-lg bg-zinc-900 aspect-[3/4]">
+                        <img src="assets/photos/h2h.JPG" 
+                             alt="Atmospheric landscape" 
+                             loading="lazy"
+                             class="object-cover w-full h-full grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500 ease-out">
+                        <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6 flex items-end">
+                            <div>
+                                <p class="text-xs font-mono text-blue-400 mb-1">09 // Heart to Heart</p>
+                                <h3 class="font-bold text-sm">KCN PVHO</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slot 10 -->
+                    <div class="group relative overflow-hidden rounded-lg bg-zinc-900 aspect-[3/4]">
+                        <img src="assets/photos/ot1.JPG" 
+                             alt="Macro photography detailing" 
+                             loading="lazy"
+                             class="object-cover w-full h-full grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500 ease-out">
+                        <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6 flex items-end">
+                            <div>
+                                <p class="text-xs font-mono text-blue-400 mb-1">10 // One One Three</p>
+                                <h3 class="font-bold text-sm">Word Alive Ministries International</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slot 11 -->
+                    <div class="group relative overflow-hidden rounded-lg bg-zinc-900 aspect-[3/4]">
+                        <img src="assets/photos/ot2.JPG" 
+                             alt="Studio portrait" 
+                             loading="lazy"
+                             class="object-cover w-full h-full grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500 ease-out">
+                        <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6 flex items-end">
+                            <div>
+                                <p class="text-xs font-mono text-blue-400 mb-1">11 // One One Three</p>
+                                <h3 class="font-bold text-sm">Word Alive Ministries International</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slot 12 -->
+                    <div class="group relative overflow-hidden rounded-lg bg-zinc-900 aspect-[3/4]">
+                        <img src="assets/photos/cap.JPG" 
+                             alt="Minimal street architecture" 
+                             loading="lazy"
+                             class="object-cover w-full h-full grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500 ease-out">
+                        <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6 flex items-end">
+                            <div>
+                                <p class="text-xs font-mono text-blue-400 mb-1">12 // Cap</p>
+                                <h3 class="font-bold text-sm">Word Alive Ministries International</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+            <hr class="border-zinc-900">
+
+            <section id="videography" class="py-20">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                    <div>
+                        <h2 class="text-2xl font-bold tracking-tight mb-2">Motion Showcase</h2>
+                        <p class="text-zinc-400 text-sm">Directing, shooting, and color grading short-form visual narratives.</p>
+                    </div>
+                </div>
+
+                <div class="w-full bg-zinc-900 rounded-lg overflow-hidden border border-zinc-900 aspect-video">
+                    <iframe class="w-full h-full"
+                            src="https://www.youtube.com/embed/HR6HUxRSL2g"
+                            title="Motion Showcase"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                    </iframe>
+                </div>
+            </section>
+
+            <hr class="border-zinc-900">
+
+            <section id="about" class="py-20 mb-12">
+                    
+                    <div class="bg-zinc-900/50 border border-zinc-900 rounded-lg p-6 flex flex-col justify-between">
+                        <div>
+                           <h2 class="text-2xl font-bold tracking-tight mb-4">Let's build something beautiful.</h2>
+                        <p class="text-zinc-400 leading-relaxed mb-6">
+                            Whether you need cinematic video sequencing, pristine editorial photography, or clean frontend layouts that showcase creative assets perfectly.
+                        </p>
+                        <div class="font-mono text-sm space-y-2">
+                            <p><span class="text-zinc-600">email:</span> <a href="mailto:danielbvalani@gmail.com" class="text-blue-400 hover:underline">danielbvalani@gmail.com</a></p>
+                            <p><span class="text-zinc-600">phone:</span> <a href="tel:+265999025468" class="text-blue-400 hover:underline">+265 999 025 468 (Main/Personal/Whatsapp)</a></p>
+                            <p><span class="text-zinc-600">phone:</span> <a href="tel:+265888280292" class="text-blue-400 hover:underline">+265 880 280 292</a></p>
+                            <p><span class="text-zinc-600">location:</span> Blantyre, Malawi</p>
+                        </div>
+                        </div>
+                        <div class="pt-6 border-t border-zinc-900/80 mt-6 flex justify-between items-center text-xs text-zinc-500 font-mono">
+                            <span>© 2026 Danny</span>
+                            <span class="text-blue-500">v1.0.0</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
