@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="danny.png">
-    <title>Photography | Danny.</title>
+    <title>Photography | Danny</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -25,12 +25,12 @@
 </head>
 <body class="bg-zinc-950 text-zinc-50 antialiased min-h-screen">
 
-    <!-- Header -->
-    <header class="fixed top-0 w-full p-6 md:p-8 flex justify-between items-center z-40 bg-zinc-950/80 backdrop-blur-md border-b border-zinc-900/50">
+    <!-- Header (Elevated to z-50 to sit above the menu) -->
+    <header class="fixed top-0 w-full p-6 md:p-8 flex justify-between items-center z-50 bg-zinc-950/80 backdrop-blur-md border-b border-zinc-900/50">
         <a href="index.html" class="text-2xl tracking-widest uppercase font-medium">Danny.</a>
         
         <!-- Functional Hamburger Icon Button -->
-        <button id="main-menu-btn" aria-label="Toggle Menu" class="relative z-50 p-2 focus:outline-none group">
+        <button id="main-menu-btn" aria-label="Toggle Menu" class="relative p-2 focus:outline-none group">
             <div id="hamburger-icon" class="w-6 h-4 flex flex-col justify-between">
                 <span class="bar-1 w-full h-[2px] bg-zinc-50 transition-all duration-300 origin-center"></span>
                 <span class="bar-2 w-full h-[2px] bg-zinc-50 transition-all duration-300"></span>
@@ -39,8 +39,8 @@
         </button>
     </header>
 
-    <!-- Main Menu Overlay -->
-    <div id="main-menu" class="fixed inset-0 bg-zinc-950/98 z-40 hidden flex-col justify-center items-center space-y-8 opacity-0 transition-opacity duration-300">
+    <!-- Main Menu Overlay (Fixed background opacity and layout) -->
+    <div id="main-menu" class="fixed inset-0 bg-zinc-950/95 z-40 hidden flex-col justify-center items-center space-y-8 opacity-0 transition-opacity duration-300">
         <nav class="flex flex-col items-center space-y-6 text-center">
             <a href="photography.html" class="text-3xl md:text-5xl tracking-widest uppercase text-zinc-400 hover:text-zinc-100 transition-colors">Photography</a>
             <a href="videography.html" class="text-3xl md:text-5xl tracking-widest uppercase hover:text-zinc-400 transition-colors">Videography</a>
@@ -78,7 +78,7 @@
         </div>
 
         <!-- Month Filter Dropdown -->
-        <div id="month-menu" class="hidden mb-12 p-6 border border-zinc-900 bg-zinc-900/40 rounded flex flex-wrap gap-8 text-sm tracking-widest uppercase">
+        <div id="month-menu" class="hidden mb-12 p-6 border border-zinc-900 bg-zinc-900/40 rounded flex-wrap gap-8 text-sm tracking-widest uppercase">
             <a href="#" class="hover:text-zinc-400 transition-colors">January '26</a>
             <a href="#" class="hover:text-zinc-400 transition-colors">April '26</a>
             <a href="#" class="hover:text-zinc-400 transition-colors">July '26</a>
@@ -88,7 +88,6 @@
         <!-- 12-Slot Image Grid -->
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
             
-            <!-- Slot 01 -->
             <div class="group relative overflow-hidden bg-zinc-900 aspect-[3/4] cursor-pointer" onclick="openLightbox(0)">
                 <img src="assets/photos/maroon1.webp" alt="Chayamba Building" loading="lazy" class="object-cover w-full h-full grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out">
                 <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6 flex items-end">
@@ -99,7 +98,6 @@
                 </div>
             </div>
 
-            <!-- Slot 02 -->
             <div class="group relative overflow-hidden bg-zinc-900 aspect-[3/4] cursor-pointer" onclick="openLightbox(1)">
                 <img src="assets/photos/maroon2.webp" alt="Chayamba Building" loading="lazy" class="object-cover w-full h-full grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out">
                 <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6 flex items-end">
@@ -110,7 +108,6 @@
                 </div>
             </div>
 
-            <!-- Slot 03 -->
             <div class="group relative overflow-hidden bg-zinc-900 aspect-[3/4] cursor-pointer" onclick="openLightbox(2)">
                 <img src="assets/photos/nike1.webp" alt="Word Alive Ministries" loading="lazy" class="object-cover w-full h-full grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out">
                 <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6 flex items-end">
@@ -121,7 +118,6 @@
                 </div>
             </div>
 
-            <!-- Slot 04 -->
             <div class="group relative overflow-hidden bg-zinc-900 aspect-[3/4] cursor-pointer" onclick="openLightbox(3)">
                 <img src="assets/photos/pip1.webp" alt="Word Alive Ministries" loading="lazy" class="object-cover w-full h-full grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out">
                 <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6 flex items-end">
@@ -132,7 +128,6 @@
                 </div>
             </div>
 
-            <!-- Slot 05 -->
             <div class="group relative overflow-hidden bg-zinc-900 aspect-[3/4] cursor-pointer" onclick="openLightbox(4)">
                 <img src="assets/photos/pip2.webp" alt="Word Alive Ministries" loading="lazy" class="object-cover w-full h-full grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out">
                 <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6 flex items-end">
@@ -143,7 +138,6 @@
                 </div>
             </div>
 
-            <!-- Slot 06 -->
             <div class="group relative overflow-hidden bg-zinc-900 aspect-[3/4] cursor-pointer" onclick="openLightbox(5)">
                 <img src="assets/photos/nike2.webp" alt="Word Alive Ministries" loading="lazy" class="object-cover w-full h-full grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out">
                 <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6 flex items-end">
@@ -154,7 +148,6 @@
                 </div>
             </div>
 
-            <!-- Slot 07 -->
             <div class="group relative overflow-hidden bg-zinc-900 aspect-[3/4] cursor-pointer" onclick="openLightbox(6)">
                 <img src="assets/photos/joy1.webp" alt="KUHES-Mahatma Gandhi" loading="lazy" class="object-cover w-full h-full grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out">
                 <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6 flex items-end">
@@ -165,7 +158,6 @@
                 </div>
             </div>
 
-            <!-- Slot 08 -->
             <div class="group relative overflow-hidden bg-zinc-900 aspect-[3/4] cursor-pointer" onclick="openLightbox(7)">
                 <img src="assets/photos/joy4.webp" alt="KUHES-Mahatma Gandhi" loading="lazy" class="object-cover w-full h-full grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out">
                 <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6 flex items-end">
@@ -176,7 +168,6 @@
                 </div>
             </div>
 
-            <!-- Slot 09 -->
             <div class="group relative overflow-hidden bg-zinc-900 aspect-[3/4] cursor-pointer" onclick="openLightbox(8)">
                 <img src="assets/photos/h2h.webp" alt="KCN PVHO" loading="lazy" class="object-cover w-full h-full grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out">
                 <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6 flex items-end">
@@ -187,7 +178,6 @@
                 </div>
             </div>
 
-            <!-- Slot 10 -->
             <div class="group relative overflow-hidden bg-zinc-900 aspect-[3/4] cursor-pointer" onclick="openLightbox(9)">
                 <img src="assets/photos/ot1.webp" alt="Word Alive Ministries" loading="lazy" class="object-cover w-full h-full grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out">
                 <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6 flex items-end">
@@ -198,7 +188,6 @@
                 </div>
             </div>
 
-            <!-- Slot 11 -->
             <div class="group relative overflow-hidden bg-zinc-900 aspect-[3/4] cursor-pointer" onclick="openLightbox(10)">
                 <img src="assets/photos/ot2.webp" alt="Word Alive Ministries" loading="lazy" class="object-cover w-full h-full grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out">
                 <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6 flex items-end">
@@ -209,7 +198,6 @@
                 </div>
             </div>
 
-            <!-- Slot 12 -->
             <div class="group relative overflow-hidden bg-zinc-900 aspect-[3/4] cursor-pointer" onclick="openLightbox(11)">
                 <img src="assets/photos/cap.webp" alt="Word Alive Ministries" loading="lazy" class="object-cover w-full h-full grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out">
                 <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6 flex items-end">
@@ -229,7 +217,7 @@
     </footer>
 
     <!-- Full-Screen Lightbox Modal -->
-    <div id="lightbox" class="fixed inset-0 z-50 bg-zinc-950/95 backdrop-blur-md hidden flex flex-col items-center justify-center opacity-0 transition-opacity duration-300 p-4 select-none">
+    <div id="lightbox" class="fixed inset-0 z-[60] bg-zinc-950/95 backdrop-blur-md hidden flex-col items-center justify-center opacity-0 transition-opacity duration-300 p-4 select-none">
         <!-- Close Button -->
         <button onclick="closeLightbox()" class="absolute top-6 right-6 md:top-8 md:right-8 text-sm tracking-widest uppercase text-zinc-400 hover:text-zinc-50 transition-colors z-10 flex items-center space-x-2">
             <span>Close</span>
@@ -249,29 +237,35 @@
     </div>
 
     <script>
-        // Main Hamburger Menu Toggle Logic
+        // Main Hamburger Menu Toggle Logic (Fixed layout display logic)
         const mainBtn = document.getElementById('main-menu-btn');
         const mainMenu = document.getElementById('main-menu');
         const hamburgerIcon = document.getElementById('hamburger-icon');
 
         mainBtn.addEventListener('click', () => {
-            const isMenuHidden = mainMenu.classList.contains('hidden');
-            if (isMenuHidden) {
-                mainMenu.classList.remove('hidden');
+            if (mainMenu.classList.contains('hidden')) {
+                mainMenu.classList.replace('hidden', 'flex'); // Ensures flexbox layout works
                 setTimeout(() => mainMenu.classList.remove('opacity-0'), 10);
                 hamburgerIcon.classList.add('hamburger-active');
             } else {
                 mainMenu.classList.add('opacity-0');
-                setTimeout(() => mainMenu.classList.add('hidden'), 300);
+                setTimeout(() => {
+                    mainMenu.classList.replace('flex', 'hidden');
+                }, 300);
                 hamburgerIcon.classList.remove('hamburger-active');
             }
         });
 
-        // Month Filter Menu Logic
+        // Month Filter Menu Logic (Fixed layout display logic)
         const filterBtn = document.getElementById('month-filter-btn');
         const monthMenu = document.getElementById('month-menu');
+        
         filterBtn.addEventListener('click', () => {
-            monthMenu.classList.toggle('hidden');
+            if (monthMenu.classList.contains('hidden')) {
+                monthMenu.classList.replace('hidden', 'flex');
+            } else {
+                monthMenu.classList.replace('flex', 'hidden');
+            }
         });
 
         // Lightbox Gallery Navigation
@@ -284,7 +278,7 @@
         function openLightbox(index) {
             currentPhotoIndex = index;
             lightboxImg.src = photoSources[currentPhotoIndex];
-            lightbox.classList.remove('hidden');
+            lightbox.classList.replace('hidden', 'flex'); // Fixes lightbox centering
             setTimeout(() => lightbox.classList.remove('opacity-0'), 10);
             document.body.style.overflow = 'hidden';
         }
@@ -292,7 +286,7 @@
         function closeLightbox() {
             lightbox.classList.add('opacity-0');
             setTimeout(() => {
-                lightbox.classList.add('hidden');
+                lightbox.classList.replace('flex', 'hidden');
                 lightboxImg.src = '';
             }, 300);
             document.body.style.overflow = 'auto';
