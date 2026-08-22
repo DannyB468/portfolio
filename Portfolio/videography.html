@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="danny.png">
+    <title>Photography | Danny.</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
+    <style> body { font-family: 'Cormorant Garamond', serif; } </style>
+</head>
+<body class="bg-zinc-950 text-zinc-50 antialiased min-h-screen">
+
+    <!-- Header (Same as Home) -->
+    <header class="fixed top-0 w-full p-8 flex justify-between items-center z-50 bg-zinc-950/80 backdrop-blur-md">
+        <a href="index.html" class="text-2xl tracking-widest uppercase">Danny.</a>
+        <button id="main-menu-btn" class="text-lg tracking-widest uppercase hover:text-zinc-400 transition-colors">Menu</button>
+    </header>
+
+    <!-- Main Menu Overlay (Hidden) -->
+    <div id="main-menu" class="fixed inset-0 bg-zinc-950/95 z-40 hidden flex-col justify-center items-center space-y-8 opacity-0 transition-opacity duration-300">
+        <a href="photography.html" class="text-4xl md:text-6xl tracking-widest text-zinc-500">Photography</a>
+        <a href="videography.html" class="text-4xl md:text-6xl tracking-widest hover:text-zinc-400">Videography</a>
+        <a href="about.html" class="text-4xl md:text-6xl tracking-widest hover:text-zinc-400">About</a>
+    </div>
+
+    <!-- Page Content -->
+    <main class="pt-32 pb-20 px-8 max-w-7xl mx-auto">
+        <!-- Section Header with Sub-menu toggle -->
+        <div class="flex justify-between items-end mb-16 border-b border-zinc-800 pb-6">
+            <h1 class="text-4xl md:text-5xl tracking-widest uppercase">Photography</h1>
+            
+            <!-- Secondary Hamburger for Months -->
+            <button id="month-filter-btn" class="flex items-center space-x-2 text-sm tracking-[0.2em] uppercase hover:text-zinc-400 transition-colors">
+                <span>Filter by Month</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </div>
+
+        <!-- Month Filter Dropdown Overlay -->
+        <div id="month-menu" class="hidden mb-16 p-8 border border-zinc-800 rounded flex flex-wrap gap-8 text-lg tracking-widest uppercase">
+            <a href="#" class="hover:text-zinc-400 transition-colors">January '26</a>
+            <a href="#" class="hover:text-zinc-400 transition-colors">April '26</a>
+            <a href="#" class="hover:text-zinc-400 transition-colors">July '26</a>
+            <a href="#" class="text-zinc-500 line-through">August '26</a>
+        </div>
+
+        <!-- Minimalist Image Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+            <!-- Image 1 -->
+            <div class="group">
+                <img src="assets/photos/maroon1.webp" alt="Sunday Afternoon" class="w-full aspect-[3/4] object-cover grayscale hover:grayscale-0 transition-all duration-700">
+                <p class="mt-4 text-sm tracking-widest text-zinc-400 uppercase">Sunday Afternoon / Chayamba</p>
+            </div>
+            <!-- Image 2 -->
+            <div class="group">
+                <img src="assets/photos/nike1.webp" alt="Swoosh" class="w-full aspect-[3/4] object-cover grayscale hover:grayscale-0 transition-all duration-700">
+                <p class="mt-4 text-sm tracking-widest text-zinc-400 uppercase">Swoosh / WAMI</p>
+            </div>
+            <!-- Image 3 -->
+            <div class="group">
+                <img src="assets/photos/joy1.webp" alt="JOY" class="w-full aspect-[3/4] object-cover grayscale hover:grayscale-0 transition-all duration-700">
+                <p class="mt-4 text-sm tracking-widest text-zinc-400 uppercase">JOY / KUHES</p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Main Menu Logic
+        const mainBtn = document.getElementById('main-menu-btn');
+        const mainMenu = document.getElementById('main-menu');
+        mainBtn.addEventListener('click', () => {
+            if (mainMenu.classList.contains('hidden')) {
+                mainMenu.classList.remove('hidden');
+                setTimeout(() => mainMenu.classList.remove('opacity-0'), 10);
+                mainBtn.innerText = 'Close';
+            } else {
+                mainMenu.classList.add('opacity-0');
+                setTimeout(() => mainMenu.classList.add('hidden'), 300);
+                mainBtn.innerText = 'Menu';
+            }
+        });
+
+        // Month Filter Logic
+        const filterBtn = document.getElementById('month-filter-btn');
+        const monthMenu = document.getElementById('month-menu');
+        filterBtn.addEventListener('click', () => {
+            monthMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
