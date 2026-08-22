@@ -8,7 +8,20 @@
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
-    <style> body { font-family: 'Cormorant Garamond', serif; } </style>
+    <style> 
+        body { font-family: 'Cormorant Garamond', serif; } 
+        
+        /* Hamburger Animation */
+        .hamburger-active .bar-1 {
+            transform: translateY(7px) rotate(45deg);
+        }
+        .hamburger-active .bar-2 {
+            opacity: 0;
+        }
+        .hamburger-active .bar-3 {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+    </style>
 </head>
 <body class="bg-zinc-950 text-zinc-50 antialiased h-screen flex flex-col">
 
@@ -26,7 +39,7 @@
         </button>
     </header>
 
-    <!-- Main Menu Overlay (Fixed background opacity and layout) -->
+    <!-- Main Menu Overlay (hidden by default, flex applied via JS) -->
     <div id="main-menu" class="fixed inset-0 bg-zinc-950/95 z-40 hidden flex-col justify-center items-center space-y-8 opacity-0 transition-opacity duration-300">
         <nav class="flex flex-col items-center space-y-6 text-center">
             <a href="photography.html" class="text-3xl md:text-5xl tracking-widest uppercase text-zinc-400 hover:text-zinc-100 transition-colors">Photography</a>
@@ -52,15 +65,19 @@
     <script>
         const mainBtn = document.getElementById('main-menu-btn');
         const mainMenu = document.getElementById('main-menu');
+        const hamburgerIcon = document.getElementById('hamburger-icon');
+
         mainBtn.addEventListener('click', () => {
             if (mainMenu.classList.contains('hidden')) {
-                mainMenu.classList.remove('hidden');
+                mainMenu.classList.replace('hidden', 'flex'); // Properly applies flexbox layout
                 setTimeout(() => mainMenu.classList.remove('opacity-0'), 10);
-                mainBtn.innerText = 'Close';
+                hamburgerIcon.classList.add('hamburger-active'); // Animates icon to "X"
             } else {
                 mainMenu.classList.add('opacity-0');
-                setTimeout(() => mainMenu.classList.add('hidden'), 300);
-                mainBtn.innerText = 'Menu';
+                setTimeout(() => {
+                    mainMenu.classList.replace('flex', 'hidden'); // Properly removes it
+                }, 300);
+                hamburgerIcon.classList.remove('hamburger-active'); // Reverts icon to hamburger
             }
         });
     </script>
