@@ -12,17 +12,17 @@
 </head>
 <body class="bg-zinc-950 text-zinc-50 antialiased min-h-screen">
 
-    <!-- Header (Same as Home) -->
-    <header class="fixed top-0 w-full p-8 flex justify-between items-center z-50 bg-zinc-950/80 backdrop-blur-md">
+    <!-- Header -->
+    <header class="fixed top-0 w-full p-8 flex justify-between items-center z-50 bg-zinc-950/80 backdrop-blur-md border-b border-zinc-900/50">
         <a href="index.html" class="text-2xl tracking-widest uppercase">Danny.</a>
         <button id="main-menu-btn" class="text-lg tracking-widest uppercase hover:text-zinc-400 transition-colors">Menu</button>
     </header>
 
-    <!-- Main Menu Overlay (Hidden) -->
+    <!-- Main Menu Overlay (hidden by default, flex applied via JS) -->
     <div id="main-menu" class="fixed inset-0 bg-zinc-950/95 z-40 hidden flex-col justify-center items-center space-y-8 opacity-0 transition-opacity duration-300">
-        <a href="photography.html" class="text-4xl md:text-6xl tracking-widest text-zinc-500">Photography</a>
-        <a href="videography.html" class="text-4xl md:text-6xl tracking-widest hover:text-zinc-400">Videography</a>
-        <a href="about.html" class="text-4xl md:text-6xl tracking-widest hover:text-zinc-400">About</a>
+        <a href="photography.html" class="text-4xl md:text-6xl tracking-widest uppercase text-zinc-500 hover:text-zinc-100 transition-colors">Photography</a>
+        <a href="videography.html" class="text-4xl md:text-6xl tracking-widest uppercase hover:text-zinc-400 transition-colors">Videography</a>
+        <a href="about.html" class="text-4xl md:text-6xl tracking-widest uppercase hover:text-zinc-400 transition-colors">About</a>
     </div>
 
     <!-- Page Content -->
@@ -38,29 +38,29 @@
             </button>
         </div>
 
-        <!-- Month Filter Dropdown Overlay -->
-        <div id="month-menu" class="hidden mb-16 p-8 border border-zinc-800 rounded flex flex-wrap gap-8 text-lg tracking-widest uppercase">
+        <!-- Month Filter Dropdown Overlay (Removed 'flex' from base classes to prevent conflict) -->
+        <div id="month-menu" class="hidden mb-16 p-8 border border-zinc-800 bg-zinc-900/40 rounded flex-wrap gap-8 text-lg tracking-widest uppercase">
             <a href="#" class="hover:text-zinc-400 transition-colors">January '26</a>
             <a href="#" class="hover:text-zinc-400 transition-colors">April '26</a>
             <a href="#" class="hover:text-zinc-400 transition-colors">July '26</a>
-            <a href="#" class="text-zinc-500 line-through">August '26</a>
+            <a href="#" class="text-zinc-500 line-through cursor-not-allowed">August '26</a>
         </div>
 
         <!-- Minimalist Image Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
             <!-- Image 1 -->
             <div class="group">
-                <img src="assets/photos/maroon1.webp" alt="Sunday Afternoon" class="w-full aspect-[3/4] object-cover grayscale hover:grayscale-0 transition-all duration-700">
+                <img src="assets/photos/maroon1.webp" alt="Sunday Afternoon" class="w-full aspect-[3/4] object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
                 <p class="mt-4 text-sm tracking-widest text-zinc-400 uppercase">Sunday Afternoon / Chayamba</p>
             </div>
             <!-- Image 2 -->
             <div class="group">
-                <img src="assets/photos/nike1.webp" alt="Swoosh" class="w-full aspect-[3/4] object-cover grayscale hover:grayscale-0 transition-all duration-700">
+                <img src="assets/photos/nike1.webp" alt="Swoosh" class="w-full aspect-[3/4] object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
                 <p class="mt-4 text-sm tracking-widest text-zinc-400 uppercase">Swoosh / WAMI</p>
             </div>
             <!-- Image 3 -->
             <div class="group">
-                <img src="assets/photos/joy1.webp" alt="JOY" class="w-full aspect-[3/4] object-cover grayscale hover:grayscale-0 transition-all duration-700">
+                <img src="assets/photos/joy1.webp" alt="JOY" class="w-full aspect-[3/4] object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
                 <p class="mt-4 text-sm tracking-widest text-zinc-400 uppercase">JOY / KUHES</p>
             </div>
         </div>
@@ -70,23 +70,31 @@
         // Main Menu Logic
         const mainBtn = document.getElementById('main-menu-btn');
         const mainMenu = document.getElementById('main-menu');
+        
         mainBtn.addEventListener('click', () => {
             if (mainMenu.classList.contains('hidden')) {
-                mainMenu.classList.remove('hidden');
+                mainMenu.classList.replace('hidden', 'flex'); // Properly applies flexbox layout
                 setTimeout(() => mainMenu.classList.remove('opacity-0'), 10);
-                mainBtn.innerText = 'Close';
+                mainBtn.innerText = 'CLOSE';
             } else {
                 mainMenu.classList.add('opacity-0');
-                setTimeout(() => mainMenu.classList.add('hidden'), 300);
-                mainBtn.innerText = 'Menu';
+                setTimeout(() => {
+                    mainMenu.classList.replace('flex', 'hidden'); // Properly removes it
+                }, 300);
+                mainBtn.innerText = 'MENU';
             }
         });
 
         // Month Filter Logic
         const filterBtn = document.getElementById('month-filter-btn');
         const monthMenu = document.getElementById('month-menu');
+        
         filterBtn.addEventListener('click', () => {
-            monthMenu.classList.toggle('hidden');
+            if (monthMenu.classList.contains('hidden')) {
+                monthMenu.classList.replace('hidden', 'flex'); // Properly applies flexbox layout
+            } else {
+                monthMenu.classList.replace('flex', 'hidden'); // Properly removes it
+            }
         });
     </script>
 </body>
