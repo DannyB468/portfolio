@@ -59,17 +59,17 @@
         <!-- Minimalist Image Grid -->
         <div id="image-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
             <!-- Image 1 -->
-            <div class="group">
+            <div class="group cursor-pointer" onclick="openLightbox(0)">
                 <img src="assets/photos/maroon1.webp" alt="Sunday Afternoon" class="w-full aspect-[3/4] object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
                 <p class="mt-4 text-sm tracking-widest text-zinc-400 uppercase">Sunday Afternoon / Chayamba</p>
             </div>
             <!-- Image 2 -->
-            <div class="group">
+            <div class="group cursor-pointer" onclick="openLightbox(1)">
                 <img src="assets/photos/nike1.webp" alt="Swoosh" class="w-full aspect-[3/4] object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
                 <p class="mt-4 text-sm tracking-widest text-zinc-400 uppercase">Swoosh / WAMI</p>
             </div>
             <!-- Image 3 -->
-            <div class="group">
+            <div class="group cursor-pointer" onclick="openLightbox(2)">
                 <img src="assets/photos/joy1.webp" alt="JOY" class="w-full aspect-[3/4] object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
                 <p class="mt-4 text-sm tracking-widest text-zinc-400 uppercase">JOY / KUHES</p>
             </div>
@@ -84,6 +84,20 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
         </svg>
     </button>
+
+    <!-- Full-Screen Lightbox Modal -->
+    <div id="lightbox" class="fixed inset-0 z-[60] bg-zinc-950/95 backdrop-blur-md hidden flex-col items-center justify-center opacity-0 transition-opacity duration-300 p-4 select-none">
+        <button onclick="closeLightbox()" aria-label="Close image viewer" class="absolute top-6 right-6 md:top-8 md:right-8 text-3xl text-zinc-400 hover:text-zinc-50 transition-colors z-10">&times;</button>
+
+        <img id="lightbox-img" src="" alt="Expanded View" class="max-h-[85vh] max-w-[90vw] object-contain shadow-2xl transition-opacity duration-300">
+
+        <button onclick="navigateLightbox(-1)" aria-label="Previous photo" class="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center text-zinc-400 hover:text-zinc-50 bg-zinc-900/40 hover:bg-zinc-900/80 rounded-full transition-all text-2xl">
+            &#8249;
+        </button>
+        <button onclick="navigateLightbox(1)" aria-label="Next photo" class="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center text-zinc-400 hover:text-zinc-50 bg-zinc-900/40 hover:bg-zinc-900/80 rounded-full transition-all text-2xl">
+            &#8250;
+        </button>
+    </div>
 
     <script>
         // 1. Generate 97 extra grid slots (to reach 100 total)
@@ -138,6 +152,59 @@
                 top: 0,
                 behavior: 'smooth'
             });
+        });
+
+        // Full-size photo viewer
+        const photoElements = Array.from(document.querySelectorAll('#image-grid img'));
+        const photoSources = photoElements.map(img => img.src);
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        let currentPhotoIndex = 0;
+
+        function openLightbox(index) {
+            currentPhotoIndex = index;
+            lightboxImg.src = photoSources[currentPhotoIndex];
+            lightboxImg.alt = photoElements[currentPhotoIndex].alt;
+            lightbox.classList.replace('hidden', 'flex');
+            setTimeout(() => lightbox.classList.remove('opacity-0'), 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.add('opacity-0');
+            setTimeout(() => {
+                lightbox.classList.replace('flex', 'hidden');
+                lightboxImg.src = '';
+            }, 300);
+            document.body.style.overflow = 'auto';
+        }
+
+        function navigateLightbox(direction) {
+            currentPhotoIndex = (currentPhotoIndex + direction + photoSources.length) % photoSources.length;
+            lightboxImg.style.opacity = '0.5';
+            setTimeout(() => {
+                lightboxImg.src = photoSources[currentPhotoIndex];
+                lightboxImg.alt = photoElements[currentPhotoIndex].alt;
+                lightboxImg.style.opacity = '1';
+            }, 100);
+        }
+
+        lightbox.addEventListener('click', (event) => {
+            if (event.target === lightbox) {
+                closeLightbox();
+            }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (lightbox.classList.contains('hidden')) return;
+
+            if (event.key === 'Escape') {
+                closeLightbox();
+            } else if (event.key === 'ArrowLeft') {
+                navigateLightbox(-1);
+            } else if (event.key === 'ArrowRight') {
+                navigateLightbox(1);
+            }
         });
     </script>
 </body>
