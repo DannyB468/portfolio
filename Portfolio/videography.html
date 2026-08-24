@@ -10,6 +10,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
     <style> 
         body { font-family: 'Cormorant Garamond', serif; } 
+        
+        /* Hamburger Animation */
+        .hamburger-active .bar-1 {
+            transform: translateY(7px) rotate(45deg);
+        }
+        .hamburger-active .bar-2 {
+            opacity: 0;
+        }
+        .hamburger-active .bar-3 {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
         /* Optional: Add custom scrollbar for a cleaner look */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #09090b; }
@@ -23,11 +35,11 @@
         <a href="index.html" class="text-2xl tracking-widest uppercase">Danny.</a>
 
         <!-- Functional Hamburger Icon Button -->
-        <button id="main-menu-btn" aria-label="Toggle Menu" class="relative p-2 focus:outline-none group z-50">
+        <button id="main-menu-btn" aria-label="Toggle Menu" class="relative p-2 focus:outline-none group">
             <div id="hamburger-icon" class="w-6 h-4 flex flex-col justify-between">
-                <span class="bar-1 w-full h-[2px] bg-zinc-50 transition-all duration-300 origin-top-left"></span>
+            <span class="bar-1 w-full h-[2px] bg-zinc-50 transition-all duration-300 origin-center"></span>
                 <span class="bar-2 w-full h-[2px] bg-zinc-50 transition-all duration-300"></span>
-                <span class="bar-3 w-full h-[2px] bg-zinc-50 transition-all duration-300 origin-bottom-left"></span>
+            <span class="bar-3 w-full h-[2px] bg-zinc-50 transition-all duration-300 origin-center"></span>
             </div>
         </button>
     </header>
@@ -35,9 +47,10 @@
     <!-- Main Menu Overlay -->
     <div id="main-menu" class="fixed inset-0 bg-zinc-950/95 z-40 hidden flex-col justify-center items-center space-y-8 opacity-0 transition-opacity duration-300">
         <nav class="flex flex-col items-center space-y-6 text-center">
+            <a href="index.html" class="text-3xl md:text-5xl tracking-widest uppercase text-zinc-400 hover:text-zinc-100 transition-colors">Home</a>
             <a href="photography.html" class="text-3xl md:text-5xl tracking-widest uppercase text-zinc-400 hover:text-zinc-100 transition-colors">Photography</a>
-            <a href="videography.html" class="text-3xl md:text-5xl tracking-widest uppercase hover:text-zinc-400 transition-colors">Videography</a>
-            <a href="about.html" class="text-3xl md:text-5xl tracking-widest uppercase hover:text-zinc-400 transition-colors">About</a>
+            <a href="videography.html" class="text-3xl md:text-5xl tracking-widest uppercase text-zinc-400 hover:text-zinc-100 transition-colors">Videography</a>
+            <a href="about.html" class="text-3xl md:text-5xl tracking-widest uppercase text-zinc-400 hover:text-zinc-100 transition-colors">About</a>
         </nav>
     </div>
 
@@ -105,9 +118,7 @@
         // Main Menu Logic
         const mainBtn = document.getElementById('main-menu-btn');
         const mainMenu = document.getElementById('main-menu');
-        const bar1 = document.querySelector('.bar-1');
-        const bar2 = document.querySelector('.bar-2');
-        const bar3 = document.querySelector('.bar-3');
+        const hamburgerIcon = document.getElementById('hamburger-icon');
         
         mainBtn.addEventListener('click', () => {
             const isHidden = mainMenu.classList.contains('hidden');
@@ -118,18 +129,14 @@
                 setTimeout(() => mainMenu.classList.remove('opacity-0'), 10);
                 
                 // Animate hamburger to X
-                bar1.classList.add('rotate-45', 'translate-y-[6px]');
-                bar2.classList.add('opacity-0');
-                bar3.classList.add('-rotate-45', '-translate-y-[6px]');
+                hamburgerIcon.classList.add('hamburger-active');
             } else {
                 // Close menu
                 mainMenu.classList.add('opacity-0');
                 setTimeout(() => mainMenu.classList.replace('flex', 'hidden'), 300);
                 
                 // Revert X to hamburger
-                bar1.classList.remove('rotate-45', 'translate-y-[6px]');
-                bar2.classList.remove('opacity-0');
-                bar3.classList.remove('-rotate-45', '-translate-y-[6px]');
+                hamburgerIcon.classList.remove('hamburger-active');
             }
         });
     </script>
