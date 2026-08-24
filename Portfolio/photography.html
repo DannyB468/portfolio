@@ -8,16 +8,16 @@
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
-    <style> body { font-family: 'Cormorant Garamond', serif; } </style>
+    <style> body { font-family: 'Cormorant Garamond', serif; scroll-behavior: smooth; } </style>
 </head>
-<body class="bg-zinc-950 text-zinc-50 antialiased min-h-screen">
+<body class="bg-zinc-950 text-zinc-50 antialiased min-h-screen relative">
 
     <!-- Header -->
     <header class="fixed top-0 w-full p-8 flex justify-between items-center z-50 bg-zinc-950/80 backdrop-blur-md border-b border-zinc-900/50">
         <a href="index.html" class="text-2xl tracking-widest uppercase">Danny.</a>
 
         <!-- Functional Hamburger Icon Button -->
-        <button id="main-menu-btn" aria-label="Toggle Menu" class="relative p-2 focus:outline-none group">
+        <button id="main-menu-btn" aria-label="Toggle Menu" class="relative p-2 focus:outline-none group tracking-widest text-sm uppercase">
             <div id="hamburger-icon" class="w-6 h-4 flex flex-col justify-between">
                 <span class="bar-1 w-full h-[2px] bg-zinc-50 transition-all duration-300 origin-center"></span>
                 <span class="bar-2 w-full h-[2px] bg-zinc-50 transition-all duration-300"></span>
@@ -26,7 +26,7 @@
         </button>
     </header>
 
-    <!-- Main Menu Overlay (Fixed background opacity and layout) -->
+    <!-- Main Menu Overlay -->
     <div id="main-menu" class="fixed inset-0 bg-zinc-950/95 z-40 hidden flex-col justify-center items-center space-y-8 opacity-0 transition-opacity duration-300">
         <nav class="flex flex-col items-center space-y-6 text-center">
             <a href="photography.html" class="text-3xl md:text-5xl tracking-widest uppercase text-zinc-400 hover:text-zinc-100 transition-colors">Photography</a>
@@ -37,27 +37,13 @@
 
     <!-- Page Content -->
     <main class="pt-32 pb-20 px-8 max-w-7xl mx-auto">
-        <!-- Section Header with Sub-menu toggle -->
+        <!-- Section Header -->
         <div class="flex justify-between items-end mb-16 border-b border-zinc-800 pb-6">
             <h1 class="text-4xl md:text-5xl tracking-widest uppercase">Photography</h1>
+        </div>
             
-            <!-- Secondary Hamburger for Months -->
-            <button id="month-filter-btn" class="flex items-center space-x-2 text-sm tracking-[0.2em] uppercase hover:text-zinc-400 transition-colors">
-                <span>Filter by Month</span>
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-            </button>
-        </div>
-
-        <!-- Month Filter Dropdown Overlay (Removed 'flex' from base classes to prevent conflict) -->
-        <div id="month-menu" class="hidden mb-16 p-8 border border-zinc-800 bg-zinc-900/40 rounded flex-wrap gap-8 text-lg tracking-widest uppercase">
-            <a href="#" class="hover:text-zinc-400 transition-colors">January '26</a>
-            <a href="#" class="hover:text-zinc-400 transition-colors">April '26</a>
-            <a href="#" class="hover:text-zinc-400 transition-colors">July '26</a>
-            <a href="#" class="text-zinc-500 line-through cursor-not-allowed">August '26</a>
-        </div>
-
         <!-- Minimalist Image Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+        <div id="image-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
             <!-- Image 1 -->
             <div class="group">
                 <img src="assets/photos/maroon1.webp" alt="Sunday Afternoon" class="w-full aspect-[3/4] object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
@@ -73,38 +59,71 @@
                 <img src="assets/photos/joy1.webp" alt="JOY" class="w-full aspect-[3/4] object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
                 <p class="mt-4 text-sm tracking-widest text-zinc-400 uppercase">JOY / KUHES</p>
             </div>
+            
+            <!-- 97 generated slots injected here via JS -->
         </div>
     </main>
 
+    <!-- Back to Top Button -->
+    <button id="back-to-top" aria-label="Back to top" class="fixed bottom-10 right-10 bg-zinc-50 text-zinc-950 p-4 rounded-full opacity-0 pointer-events-none transition-all duration-500 z-50 hover:bg-zinc-300 shadow-xl shadow-black/50 border border-transparent">
+        <svg class="w-5 h-5 transition-transform duration-300 hover:-translate-y-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+        </svg>
+    </button>
+
     <script>
-        // Main Menu Logic
+        // 1. Generate 97 extra grid slots (to reach 100 total)
+        const imageGrid = document.getElementById('image-grid');
+        for(let i = 4; i <= 100; i++) {
+            const slot = document.createElement('div');
+            slot.className = 'group';
+            slot.innerHTML = `
+                <div class="w-full aspect-[3/4] bg-zinc-900/50 flex flex-col items-center justify-center text-zinc-700 border border-zinc-800/50 grayscale group-hover:grayscale-0 group-hover:bg-zinc-900 transition-all duration-700">
+                    <span class="tracking-widest uppercase text-xs mb-2">Slot ${i}</span>
+                    <svg class="w-8 h-8 opacity-20" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                </div>
+                <p class="mt-4 text-sm tracking-widest text-zinc-400 uppercase">Title ${i} / Location</p>
+            `;
+            imageGrid.appendChild(slot);
+        }
+
+        // 2. Main Menu Toggle Logic
         const mainBtn = document.getElementById('main-menu-btn');
         const mainMenu = document.getElementById('main-menu');
-        
+        const originalHamburgerHTML = mainBtn.innerHTML;
+
         mainBtn.addEventListener('click', () => {
             if (mainMenu.classList.contains('hidden')) {
-                mainMenu.classList.replace('hidden', 'flex'); // Properly applies flexbox layout
+                mainMenu.classList.replace('hidden', 'flex'); 
                 setTimeout(() => mainMenu.classList.remove('opacity-0'), 10);
-                mainBtn.innerText = 'CLOSE';
+                mainBtn.innerHTML = 'CLOSE';
             } else {
                 mainMenu.classList.add('opacity-0');
                 setTimeout(() => {
-                    mainMenu.classList.replace('flex', 'hidden'); // Properly removes it
+                    mainMenu.classList.replace('flex', 'hidden'); 
                 }, 300);
-                mainBtn.innerText = 'MENU';
+                mainBtn.innerHTML = originalHamburgerHTML;
             }
         });
 
-        // Month Filter Logic
-        const filterBtn = document.getElementById('month-filter-btn');
-        const monthMenu = document.getElementById('month-menu');
-        
-        filterBtn.addEventListener('click', () => {
-            if (monthMenu.classList.contains('hidden')) {
-                monthMenu.classList.replace('hidden', 'flex'); // Properly applies flexbox layout
+        // 3. Back to Top Button Logic
+        const backToTopBtn = document.getElementById('back-to-top');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 600) {
+                backToTopBtn.classList.remove('opacity-0', 'pointer-events-none');
+                backToTopBtn.classList.add('opacity-100', 'pointer-events-auto');
             } else {
-                monthMenu.classList.replace('flex', 'hidden'); // Properly removes it
+                backToTopBtn.classList.remove('opacity-100', 'pointer-events-auto');
+                backToTopBtn.classList.add('opacity-0', 'pointer-events-none');
             }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         });
     </script>
 </body>
