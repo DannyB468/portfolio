@@ -60,18 +60,18 @@
         <div id="image-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
             <!-- Image 1 -->
             <div class="group cursor-pointer" onclick="openLightbox(0)">
-                <img src="assets/photos/maroon1.webp" alt="Sunday Afternoon" class="w-full aspect-[3/4] object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                <img src="assets/photos/IMG_0221.webp" alt="Photo 1" class="w-full aspect-[3/4] object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
             </div>
             <!-- Image 2 -->
             <div class="group cursor-pointer" onclick="openLightbox(1)">
-                <img src="assets/photos/nike1.webp" alt="Swoosh" class="w-full aspect-[3/4] object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                <img src="assets/photos/IMG_0248.webp" alt="Photo 2" class="w-full aspect-[3/4] object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
             </div>
             <!-- Image 3 -->
             <div class="group cursor-pointer" onclick="openLightbox(2)">
-                <img src="assets/photos/joy1.webp" alt="JOY" class="w-full aspect-[3/4] object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                <img src="assets/photos/IMG_0250.webp" alt="Photo 3" class="w-full aspect-[3/4] object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
             </div>
             
-            <!-- 97 generated slots injected here via JS -->
+            <!-- Remaining image slots injected here via JS -->
         </div>
     </main>
 
@@ -97,17 +97,26 @@
     </div>
 
     <script>
-        // 1. Generate 97 extra grid slots (to reach 100 total)
+        // 1. Generate the remaining image slots from the requested ordered range
         const imageGrid = document.getElementById('image-grid');
+        const imagePaths = [
+            'assets/photos/IMG_0221.webp', 'assets/photos/IMG_0248.webp', 'assets/photos/IMG_0250.webp', 'assets/photos/IMG_0366.webp', 'assets/photos/IMG_0367.webp', 'assets/photos/IMG_0368.webp', 'assets/photos/IMG_0370_1.webp', 'assets/photos/IMG_0371.webp', 'assets/photos/IMG_0374.webp', 'assets/photos/IMG_0410.webp',
+            'assets/photos/IMG_0412.webp', 'assets/photos/IMG_0451.webp', 'assets/photos/IMG_0623.webp', 'assets/photos/IMG_0624.webp', 'assets/photos/IMG_0625.webp', 'assets/photos/IMG_0626.webp', 'assets/photos/IMG_0627.webp', 'assets/photos/IMG_0760.webp', 'assets/photos/IMG_0762.webp', 'assets/photos/IMG_0766.webp',
+            'assets/photos/IMG_0769.webp', 'assets/photos/IMG_0770.webp', 'assets/photos/IMG_0771.webp', 'assets/photos/IMG_0787.webp', 'assets/photos/IMG_0788.webp', 'assets/photos/IMG_0805.webp', 'assets/photos/IMG_0806.webp', 'assets/photos/IMG_0809.webp', 'assets/photos/IMG_0810.webp', 'assets/photos/IMG_0811.webp',
+            'assets/photos/IMG_0812.webp', 'assets/photos/IMG_0815.webp', 'assets/photos/IMG_0816.webp', 'assets/photos/IMG_0818.webp', 'assets/photos/IMG_0819.webp', 'assets/photos/IMG_0820.webp', 'assets/photos/IMG_0821.webp', 'assets/photos/IMG_0822.webp', 'assets/photos/IMG_0823.webp', 'assets/photos/IMG_0824.webp',
+            'assets/photos/IMG_0825.webp', 'assets/photos/IMG_0826.webp', 'assets/photos/IMG_0827.webp', 'assets/photos/IMG_0829.webp', 'assets/photos/IMG_0830.webp', 'assets/photos/IMG_0834.webp', 'assets/photos/IMG_0960.webp', 'assets/photos/IMG_0961.webp', 'assets/photos/IMG_0962.webp', 'assets/photos/IMG_0963.webp',
+            'assets/photos/IMG_0964.webp', 'assets/photos/IMG_1187.webp', 'assets/photos/IMG_1190.webp', 'assets/photos/IMG_1800.webp', 'assets/photos/IMG_2492.webp', 'assets/photos/IMG_2493.webp', 'assets/photos/IMG_2494.webp', 'assets/photos/IMG_2495.webp', 'assets/photos/IMG_2498.webp', 'assets/photos/IMG_2501.webp',
+            'assets/photos/IMG_2502.webp', 'assets/photos/IMG_2503.webp', 'assets/photos/IMG_2504.webp', 'assets/photos/IMG_2505.webp', 'assets/photos/IMG_2506.webp', 'assets/photos/IMG_2507.webp', 'assets/photos/IMG_2509.webp', 'assets/photos/IMG_2511.webp', 'assets/photos/IMG_2535.webp', 'assets/photos/IMG_2560.webp',
+            'assets/photos/IMG_2601.webp', 'assets/photos/IMG_2603.webp', 'assets/photos/IMG_2620.webp', 'assets/photos/IMG_2621.webp', 'assets/photos/IMG_3116.webp', 'assets/photos/IMG_3122.webp', 'assets/photos/IMG_3124.webp', 'assets/photos/IMG_3128.webp', 'assets/photos/IMG_3129.webp', 'assets/photos/IMG_3130.webp',
+            'assets/photos/IMG_3133.webp', 'assets/photos/IMG_3135.webp', 'assets/photos/IMG_3835.webp', 'assets/photos/IMG_3851.webp', 'assets/photos/IMG_3852.webp', 'assets/photos/IMG_3855.webp', 'assets/photos/IMG_3863.webp', 'assets/photos/IMG_3868.webp', 'assets/photos/IMG_3869.webp', 'assets/photos/IMG_3872.webp',
+            'assets/photos/IMG_3884.webp', 'assets/photos/IMG_6373.webp', 'assets/photos/IMG_6374.webp', 'assets/photos/IMG_6375.webp', 'assets/photos/IMG_6377.webp', 'assets/photos/IMG_6378.webp', 'assets/photos/IMG_6381.webp', 'assets/photos/IMG_6383.webp', 'assets/photos/IMG_6384.webp', 'assets/photos/IMG_6385.webp'
+        ];
         for(let i = 4; i <= 100; i++) {
             const slot = document.createElement('div');
-            slot.className = 'group';
+            slot.className = 'group cursor-pointer';
+            slot.onclick = () => openLightbox(i - 1);
             slot.innerHTML = `
-                <div class="w-full aspect-[3/4] bg-zinc-900/50 flex flex-col items-center justify-center text-zinc-700 border border-zinc-800/50 grayscale group-hover:grayscale-0 group-hover:bg-zinc-900 transition-all duration-700">
-                    <span class="tracking-widest uppercase text-xs mb-2">Slot ${i}</span>
-                    <svg class="w-8 h-8 opacity-20" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                </div>
-                <p class="mt-4 text-sm tracking-widest text-zinc-400 uppercase">Title ${i} / Location</p>
+                <img src="${imagePaths[i - 1]}" alt="Photo ${i}" loading="lazy" class="w-full aspect-[3/4] object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
             `;
             imageGrid.appendChild(slot);
         }
