@@ -23,6 +23,12 @@
         .hamburger-active .bar-3 {
             transform: translateY(-7px) rotate(-45deg);
         }
+
+        @media (hover: none) and (pointer: coarse) {
+            #image-grid img.mobile-in-view {
+                filter: grayscale(0);
+            }
+        }
     </style>
 </head>
 <body class="bg-zinc-950 text-zinc-50 antialiased min-h-screen relative">
@@ -121,6 +127,20 @@
                 <img src="${imagePaths[i - 1]}" alt="Photo ${i}" loading="lazy" class="w-full aspect-[3/4] object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
             `;
             imageGrid.appendChild(slot);
+        }
+
+        // On touch devices, colorize the photo that remains in view after scrolling.
+        const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+        if (isTouchDevice && 'IntersectionObserver' in window) {
+            const mobilePhotoObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    entry.target.classList.toggle('mobile-in-view', entry.intersectionRatio >= 0.65);
+                });
+            }, { threshold: 0.65 });
+
+            document.querySelectorAll('#image-grid img').forEach((photo) => {
+                mobilePhotoObserver.observe(photo);
+            });
         }
 
         // 2. Main Menu Toggle Logic
