@@ -233,18 +233,6 @@
             }
         });
 
-        // Month Filter Menu Logic (Fixed layout display logic)
-        const filterBtn = document.getElementById('month-filter-btn');
-        const monthMenu = document.getElementById('month-menu');
-        
-        filterBtn.addEventListener('click', () => {
-            if (monthMenu.classList.contains('hidden')) {
-                monthMenu.classList.replace('hidden', 'flex');
-            } else {
-                monthMenu.classList.replace('flex', 'hidden');
-            }
-        });
-
         // Lightbox Gallery Navigation
         const photoElements = Array.from(document.querySelectorAll('.grid img'));
         const photoSources = photoElements.map(img => img.src);
