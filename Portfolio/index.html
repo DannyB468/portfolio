@@ -27,6 +27,12 @@
         .grid > .group > div.absolute {
             display: none;
         }
+
+        @media (hover: none) and (pointer: coarse) {
+            .grid img.mobile-in-view {
+                filter: grayscale(0);
+            }
+        }
     </style>
 </head>
 <body class="bg-zinc-950 text-zinc-50 antialiased min-h-screen">
@@ -238,6 +244,19 @@
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
         let currentPhotoIndex = 0;
+
+        const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+        if (isTouchDevice && 'IntersectionObserver' in window) {
+            const mobilePhotoObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    entry.target.classList.toggle('mobile-in-view', entry.intersectionRatio >= 0.65);
+                });
+            }, { threshold: 0.65 });
+
+            photoElements.forEach((photo) => {
+                mobilePhotoObserver.observe(photo);
+            });
+        }
 
         function openLightbox(index) {
             currentPhotoIndex = index;
