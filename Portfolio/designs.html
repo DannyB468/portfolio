@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="danny.png">
+    <title>Danny's Visuals | Designs</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Geist Mono', monospace; scroll-behavior: smooth; }
+
+        .hamburger-active .bar-1 {
+            transform: translateY(7px) rotate(45deg);
+        }
+        .hamburger-active .bar-2 {
+            opacity: 0;
+        }
+        .hamburger-active .bar-3 {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        @media (hover: none) and (pointer: coarse) {
+            #design-grid img.mobile-in-view {
+                filter: grayscale(0);
+            }
+        }
+    </style>
+</head>
+<body class="bg-zinc-950 text-zinc-50 antialiased min-h-screen relative">
+    <header class="fixed top-0 w-full p-8 flex justify-between items-center z-50 bg-zinc-950/80 backdrop-blur-md border-b border-zinc-900/50">
+        <a href="index.html" class="text-2xl tracking-widest uppercase">Danny.</a>
+        <button id="main-menu-btn" aria-label="Toggle Menu" aria-expanded="false" class="relative p-2 focus:outline-none group tracking-widest text-sm uppercase">
+            <div id="hamburger-icon" class="w-6 h-4 flex flex-col justify-between">
+                <span class="bar-1 w-full h-[2px] bg-zinc-50 transition-all duration-300 origin-center"></span>
+                <span class="bar-2 w-full h-[2px] bg-zinc-50 transition-all duration-300"></span>
+                <span class="bar-3 w-full h-[2px] bg-zinc-50 transition-all duration-300 origin-center"></span>
+            </div>
+        </button>
+    </header>
+
+    <div id="main-menu" class="fixed inset-0 bg-zinc-950/95 z-40 hidden flex-col justify-center items-center space-y-8 opacity-0 transition-opacity duration-300">
+        <nav class="flex flex-col items-center space-y-6 text-center">
+            <a href="index.html" class="text-3xl md:text-5xl tracking-widest uppercase text-zinc-400 hover:text-zinc-100 transition-colors">Home</a>
+            <a href="photography.html" class="text-3xl md:text-5xl tracking-widest uppercase text-zinc-400 hover:text-zinc-100 transition-colors">Photography</a>
+            <a href="designs.html" aria-current="page" class="text-3xl md:text-5xl tracking-widest uppercase text-zinc-400 hover:text-zinc-100 transition-colors">Designs</a>
+            <a href="videography.html" class="text-3xl md:text-5xl tracking-widest uppercase text-zinc-400 hover:text-zinc-100 transition-colors">Videography</a>
+            <a href="about.html" class="text-3xl md:text-5xl tracking-widest uppercase text-zinc-400 hover:text-zinc-100 transition-colors">About</a>
+        </nav>
+    </div>
+
+    <main class="pt-32 pb-20 px-8 max-w-7xl mx-auto">
+        <div class="flex justify-center items-end mb-16 border-b border-zinc-800 pb-6 text-center">
+            <h1 class="text-4xl md:text-5xl tracking-widest uppercase">Designs</h1>
+        </div>
+        <div id="design-grid" class="flex flex-col gap-12"></div>
+    </main>
+
+    <button id="back-to-top" aria-label="Back to top" class="fixed bottom-10 right-10 bg-zinc-50 text-zinc-950 p-4 rounded-full opacity-0 pointer-events-none transition-all duration-500 z-50 hover:bg-zinc-300 shadow-xl shadow-black/50 border border-transparent">
+        <svg class="w-5 h-5 transition-transform duration-300 hover:-translate-y-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+        </svg>
+    </button>
+
+    <div id="lightbox" class="fixed inset-0 z-[60] bg-zinc-950/95 backdrop-blur-md hidden flex-col items-center justify-center opacity-0 transition-opacity duration-300 p-4 select-none" role="dialog" aria-modal="true" aria-label="Design image viewer">
+        <button id="close-lightbox" aria-label="Close image viewer" class="absolute top-6 right-6 md:top-8 md:right-8 text-3xl text-zinc-400 hover:text-zinc-50 transition-colors z-10">&times;</button>
+        <img id="lightbox-img" src="" alt="" class="max-h-[85vh] max-w-[90vw] object-contain shadow-2xl transition-opacity duration-300">
+        <button id="previous-design" aria-label="Previous design" class="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center text-zinc-400 hover:text-zinc-50 bg-zinc-900/40 hover:bg-zinc-900/80 rounded-full transition-all text-2xl">&#8249;</button>
+        <button id="next-design" aria-label="Next design" class="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center text-zinc-400 hover:text-zinc-50 bg-zinc-900/40 hover:bg-zinc-900/80 rounded-full transition-all text-2xl">&#8250;</button>
+    </div>
+
+    <script>
+        const designGroups = [
+            [1, 2],
+            [3, 9],
+            [4, 6, 7],
+            [5, 8]
+        ].map(group => group.map(number => ({
+            number,
+            path: `assets/designs/${number}.webp`
+        })));
+        const designPaths = designGroups.flat().map(design => design.path);
+        const designGrid = document.getElementById('design-grid');
+
+        let designIndex = 0;
+        designGroups.forEach((group) => {
+            const groupGrid = document.createElement('div');
+            groupGrid.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-start gap-12';
+
+            group.forEach((design) => {
+                const index = designIndex;
+                const button = document.createElement('button');
+                button.type = 'button';
+                button.className = 'group cursor-pointer text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-50';
+                button.setAttribute('aria-label', `View design ${design.number}`);
+
+                const image = document.createElement('img');
+                image.src = design.path;
+                image.alt = `Design ${design.number}`;
+                image.loading = 'lazy';
+                image.className = 'block w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-700';
+                button.appendChild(image);
+                button.addEventListener('click', () => openLightbox(index));
+                groupGrid.appendChild(button);
+                designIndex += 1;
+            });
+
+            designGrid.appendChild(groupGrid);
+        });
+
+        const menuButton = document.getElementById('main-menu-btn');
+        const mainMenu = document.getElementById('main-menu');
+        const hamburgerIcon = document.getElementById('hamburger-icon');
+
+        menuButton.addEventListener('click', () => {
+            const isHidden = mainMenu.classList.contains('hidden');
+            if (isHidden) {
+                mainMenu.classList.replace('hidden', 'flex');
+                setTimeout(() => mainMenu.classList.remove('opacity-0'), 10);
+            } else {
+                mainMenu.classList.add('opacity-0');
+                setTimeout(() => mainMenu.classList.replace('flex', 'hidden'), 300);
+            }
+            menuButton.setAttribute('aria-expanded', String(isHidden));
+            hamburgerIcon.classList.toggle('hamburger-active', isHidden);
+        });
+
+        const backToTopButton = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            const isVisible = window.scrollY > 600;
+            backToTopButton.classList.toggle('opacity-0', !isVisible);
+            backToTopButton.classList.toggle('pointer-events-none', !isVisible);
+            backToTopButton.classList.toggle('opacity-100', isVisible);
+            backToTopButton.classList.toggle('pointer-events-auto', isVisible);
+        });
+        backToTopButton.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        const designImages = Array.from(designGrid.querySelectorAll('img'));
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightbox-img');
+        let currentDesignIndex = 0;
+
+        function showDesign(index) {
+            currentDesignIndex = (index + designPaths.length) % designPaths.length;
+            lightboxImage.src = designPaths[currentDesignIndex];
+            lightboxImage.alt = designImages[currentDesignIndex].alt;
+        }
+
+        function openLightbox(index) {
+            showDesign(index);
+            lightbox.classList.replace('hidden', 'flex');
+            setTimeout(() => lightbox.classList.remove('opacity-0'), 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.add('opacity-0');
+            setTimeout(() => {
+                lightbox.classList.replace('flex', 'hidden');
+                lightboxImage.src = '';
+            }, 300);
+            document.body.style.overflow = '';
+        }
+
+        document.getElementById('close-lightbox').addEventListener('click', closeLightbox);
+        document.getElementById('previous-design').addEventListener('click', () => showDesign(currentDesignIndex - 1));
+        document.getElementById('next-design').addEventListener('click', () => showDesign(currentDesignIndex + 1));
+        lightbox.addEventListener('click', (event) => {
+            if (event.target === lightbox) closeLightbox();
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (lightbox.classList.contains('hidden')) return;
+            if (event.key === 'Escape') closeLightbox();
+            if (event.key === 'ArrowLeft') showDesign(currentDesignIndex - 1);
+            if (event.key === 'ArrowRight') showDesign(currentDesignIndex + 1);
+        });
+
+        if (window.matchMedia('(hover: none) and (pointer: coarse)').matches && 'IntersectionObserver' in window) {
+            const designObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    entry.target.classList.toggle('mobile-in-view', entry.intersectionRatio >= 0.65);
+                });
+            }, { threshold: 0.65 });
+
+            designImages.forEach((image) => designObserver.observe(image));
+        }
+    </script>
+</body>
+</html>
